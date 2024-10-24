@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+</head>
+<body>
+    <h1>All Transactions</h1>
+    <table border="1">
+        <tr>
+            <th>User</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Time</th>
+            <th>Fraud Alert</th>
+        </tr>
+        {% for txn in transactions %}
+        <tr>
+            <td>{{ txn.user.username }}</td>
+            <td>{{ txn.amount }}</td>
+            <td>{{ txn.transaction_type }}</td>
+            <td>{{ txn.timestamp }}</td>
+            <td>
+                {% if txn.fraudalert %}
+                    {{ txn.fraudalert.alert_message }}
+                {% else %}
+                    No Alert
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
